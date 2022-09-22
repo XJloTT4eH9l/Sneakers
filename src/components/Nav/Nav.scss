@@ -1,0 +1,9 @@
+.nav {
+    &__list {
+        display: flex;
+        align-items: center;
+    }
+    &__item:not(:last-child) {
+        margin-right: 30px;
+    }
+}

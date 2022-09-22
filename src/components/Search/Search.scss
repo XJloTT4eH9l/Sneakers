@@ -1,0 +1,32 @@
+.search {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__title {
+        font-weight: 700;
+        font-size: 32px;
+    }
+    &__input {
+        max-width: 250px;
+        border: 1px solid #F3F3F3;
+        border-radius: 10px;
+        padding: 10px 15px;
+        padding-left: 46px;
+    }
+    &__block {
+        position: relative;
+    }
+    &__img {
+        position: absolute;
+        left: 18px;
+        top: 11px;
+    }
+    &__delete {
+        position: absolute;
+        right: 18px;
+        top: 14px;
+        cursor: pointer;
+    }
+}
