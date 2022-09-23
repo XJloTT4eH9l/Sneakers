@@ -11,6 +11,7 @@ function Search({ placeholder }) {
     const onClear = (e) => {
         setValue('');
     }
+    
     return (
         <div className="search">
             <h2 className="search__title">{value ? `Поиск по запросу "${value}"` : 'Все кроссовки'}</h2>

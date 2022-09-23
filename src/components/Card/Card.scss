@@ -1,0 +1,80 @@
+.card {
+    max-width: 210px;
+    position: relative;
+    padding: 25px 38px;
+    border: 1px solid #F8F8F8;
+    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 40px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        transform: translateX(10px) translateY(-10px);
+    }
+    &__img {
+        width: 133px;
+        height: 112px;
+        margin-bottom: 14px;
+    }
+    &__title {
+        max-width: 150px;
+        font-weight: 500;
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+    &__text {
+        font-weight: 500;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #BDBDBD;
+        margin-bottom: 2px;
+    }
+    &__price {
+        font-weight: 700;
+        font-size: 14px;
+    }
+    &__favorit {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 9px;
+        border: 1px solid #ECECEC;
+        border-radius: 7px;
+        transition: background-color 0.3s linear;
+        &:hover {
+            background-color: #FEF0F0;
+        }
+        &:hover .card__like {
+            stroke: #FF8585;
+        }
+    }
+    &__like {
+        width: 14px;
+        height: 12px;
+        stroke: #ECECEC;
+        stroke-width: 1.5px;
+        fill: none;
+        transition: all 0.3s linear;
+        &--active {
+            fill: #FF8585;
+        }
+    }
+    &__add {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px;
+        border: 1px solid #ECECEC;
+        border-radius: 7px;
+        transition: background-color 0.3s linear;
+        &:hover {
+            background-color:#89F09C;
+        }
+        &:hover .card__plus {
+            fill: #ffff;
+        }
+    }
+    &__plus {
+        width: 11px;
+        height: 11px;
+        fill: #D3D3D3;
+    }
+}
