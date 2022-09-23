@@ -3,6 +3,9 @@
         display: flex;
         align-items: center;
     }
+    &__item {
+        cursor: pointer;
+    }
     &__item:not(:last-child) {
         margin-right: 30px;
     }

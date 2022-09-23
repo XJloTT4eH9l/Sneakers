@@ -2,7 +2,7 @@ import './Header.scss';
 import Nav from '../Nav/Nav';
 
 
-function Header() {
+function Header({ setCartOpen }) {
     return(
         <header className="header">
             <div className="container">
@@ -14,7 +14,7 @@ function Header() {
                             <span>Магазин лучших кроссовок</span>
                         </div>
                     </div>
-                    <Nav />
+                    <Nav setCartOpen={setCartOpen} />
                 </div>
             </div>
         </header>

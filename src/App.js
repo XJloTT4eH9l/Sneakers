@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
 import Card from "./components/Card/Card";
+import SideCart from "./components/SideCart/SideCart";
 
 function App() {
 
   const [sneakers, setSneakers] = useState([]);
+  const [cartOpen, setCartOpen] = useState(['']);
 
   async function getSneakers(url) {
     const responce = await fetch(url);
@@ -20,7 +22,8 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <Header setCartOpen={setCartOpen} />
+      <SideCart cartOpen={cartOpen} setCartOpen={setCartOpen} />
       <section className="catalog">
         <div className="container">
           <Search placeholder='Поиск...'/>
