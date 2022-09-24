@@ -3,12 +3,13 @@ import { useState } from 'react';
 import './Card.scss';
 import Svg from '../Svg/Svg';
 
-function Card({ imgUrl, title, price }) {
+function Card({ imgUrl, title, price, onCart }) {
 
     const [cartAdded, setCartAdded] = useState(false);
     const [favorit, setFavorit] = useState();
 
     function onCartAdded() {
+        onCart({imgUrl, title, price});
         setCartAdded((prev) => !prev);
     }
 

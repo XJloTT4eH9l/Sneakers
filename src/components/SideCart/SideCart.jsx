@@ -1,34 +1,51 @@
 import './SideCart.scss';
 
-function SideCart({ cartOpen, setCartOpen }) {
+function SideCart({ scroll, overlay, setOverlay,  cartOpen, setCartOpen, cartItems, setCartItems }) {
+
+    function onCartClose() {
+        setCartOpen('');
+        setOverlay('overlay');
+    }
+
     return (
-        <div className={`side-cart ${cartOpen}`}>
-            <div className='side-cart__head'>
-                <div className='side-cart__header'>
-                    <h2 className='side-cart__title'>Корзина</h2>
-                    <button onClick={() => setCartOpen('')} className='side-cart__remove'><img src='img/delete.svg' alt='remove' /></button>
+        <div className={overlay}>
+            <div className={`side-cart ${cartOpen} ${scroll}`}>
+                <div className='side-cart__head'>
+                    <div className='side-cart__header'>
+                        <h2 className='side-cart__title'>Корзина</h2>
+                        <button onClick={onCartClose} className='side-cart__remove'>
+                            <img src='img/delete.svg' alt='remove' />
+                        </button>
+                    </div>
+
+                    {cartItems.map(item => {
+                        return (
+                            <SideCartItem 
+                                key={item.title}
+                                title={item.title}
+                                imgUrl={item.imgUrl}
+                                price={item.price}
+                            />
+                        )
+                    })}
+
                 </div>
-                <SideCartItem 
-                    imgSrc={'img/sneakers2.jpg'}
-                    title={'Мужские Кроссовки Nike Air Max 270'}
-                    price={'6300грн'}
-                />
-            </div>
-            <div className='side-cart__confirm'>
-                <div className='side-cart__summary'>
-                    <h3 className='side-cart__summ'>Итого:</h3>
-                    <p>6300грн</p>
+                <div className='side-cart__confirm'>
+                    <div className='side-cart__summary'>
+                        <h3 className='side-cart__summ'>Итого:</h3>
+                        <p>6300грн</p>
+                    </div>
+                    <button className='side-cart__btn'>Оформить заказ</button>
                 </div>
-                <button className='side-cart__btn'>Оформить заказ</button>
             </div>
         </div>
     )
 }
 
-function SideCartItem({ imgSrc, title, price }) {
+function SideCartItem({ imgUrl, title, price }) {
     return (
         <div className='side-cart__item'>
-            <img src={imgSrc} alt={title}></img>
+            <img src={imgUrl} alt={title}></img>
             <div className='side-cart__descr'>
                 <h3 className='side-cart__name'>{title}</h3>
                 <p className='side-cart__price'>{price}</p>

@@ -8,12 +8,22 @@ import SideCart from "./components/SideCart/SideCart";
 function App() {
 
   const [sneakers, setSneakers] = useState([]);
-  const [cartOpen, setCartOpen] = useState(['']);
+  const [cartOpen, setCartOpen] = useState('');
+  const [overlay, setOverlay] = useState('overlay');
+  const [cartItems, setCartItems] = useState([]);
+  const [scroll, setScroll] = useState('');
 
   async function getSneakers(url) {
     const responce = await fetch(url);
     const json = await responce.json();
     setSneakers(json);
+  }
+
+  const onAddToCart = (obj) => {
+    if(cartItems.length > 3) {
+      setScroll('side-cart--scroll');
+    }
+    setCartItems(prev => [...prev, obj]);
   }
 
   useEffect(()=> {
@@ -22,8 +32,16 @@ function App() {
 
   return (
     <div className="app">
-      <Header setCartOpen={setCartOpen} />
-      <SideCart cartOpen={cartOpen} setCartOpen={setCartOpen} />
+      <Header setCartOpen={setCartOpen} setOverlay={setOverlay} />
+      <SideCart
+        scroll={scroll}
+        overlay={overlay}
+        setOverlay={setOverlay}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+        cartItems={cartItems}
+        setCartItems={setCartItems} 
+      />
       <section className="catalog">
         <div className="container">
           <Search placeholder='Поиск...'/>
@@ -35,6 +53,7 @@ function App() {
                   imgUrl={item.imgUrl}
                   title={item.title}
                   price={item.price}
+                  onCart={onAddToCart}
                 />
               ) 
             })}
