@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import './Search.scss';
 
-function Search({ placeholder }) {
-    const [value, setValue] = useState('');
+function Search({ value, setValue, placeholder }) {
+    
 
     const onInputChange = (e) => {
         setValue(e.target.value);

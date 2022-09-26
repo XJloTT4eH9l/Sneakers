@@ -1,15 +1,15 @@
 import './SideCart.scss';
 
-function SideCart({ scroll, overlay, setOverlay,  cartOpen, setCartOpen, cartItems, setCartItems }) {
+function SideCart({ scroll, cartOpen, setCartOpen, cartItems, onRemoveItem }) {
 
     function onCartClose() {
-        setCartOpen('');
-        setOverlay('overlay');
+        setCartOpen(!cartOpen);
     }
 
+
     return (
-        <div className={overlay}>
-            <div className={`side-cart ${cartOpen} ${scroll}`}>
+        <div className={cartOpen ? 'overlay--active' : 'overlay'}>
+            <div className={cartOpen ? `side-cart--active ${scroll}` : `side-cart ${scroll}`}>
                 <div className='side-cart__head'>
                     <div className='side-cart__header'>
                         <h2 className='side-cart__title'>Корзина</h2>
@@ -17,18 +17,26 @@ function SideCart({ scroll, overlay, setOverlay,  cartOpen, setCartOpen, cartIte
                             <img src='img/delete.svg' alt='remove' />
                         </button>
                     </div>
-
-                    {cartItems.map(item => {
-                        return (
-                            <SideCartItem 
-                                key={item.title}
-                                title={item.title}
-                                imgUrl={item.imgUrl}
-                                price={item.price}
-                            />
-                        )
-                    })}
-
+                    {cartItems.length > 0 ? 
+                        cartItems.map(item => {
+                            return (
+                            <div className='side-cart__item' key={item.id}>
+                                <img src={item.imgUrl} alt={item.title}></img>
+                                <div className='side-cart__descr'>
+                                    <h3 className='side-cart__name'>{item.title}</h3>
+                                    <p className='side-cart__price'>{item.price}</p>
+                                </div>
+                                <button onClick={() => onRemoveItem(item.id)} className='side-cart__remove'><img src='img/delete.svg' alt='remove'></img></button>
+                            </div>
+                            )
+                        }) : 
+                        <div className='side-cart__empty'>
+                            <img className='side-cart__img' src='img/cart-empty.jpg' alt='Empty Cart'/>
+                            <h2 className='side-cart__empty-title'>Корзина пустая</h2>
+                            <p className='side-cart__text'>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
+                            <button onClick={() => setCartOpen(false)} className='side-cart__empty-close'><img src='img/arrow-left.png' alt='Back'/> Вернуться назад</button>
+                        </div>
+                    }
                 </div>
                 <div className='side-cart__confirm'>
                     <div className='side-cart__summary'>
@@ -38,19 +46,6 @@ function SideCart({ scroll, overlay, setOverlay,  cartOpen, setCartOpen, cartIte
                     <button className='side-cart__btn'>Оформить заказ</button>
                 </div>
             </div>
-        </div>
-    )
-}
-
-function SideCartItem({ imgUrl, title, price }) {
-    return (
-        <div className='side-cart__item'>
-            <img src={imgUrl} alt={title}></img>
-            <div className='side-cart__descr'>
-                <h3 className='side-cart__name'>{title}</h3>
-                <p className='side-cart__price'>{price}</p>
-            </div>
-            <button className='side-cart__remove'><img src='img/delete.svg' alt='remove'></img></button>
         </div>
     )
 }

@@ -1,11 +1,11 @@
 import './Nav.scss';
 
-function Nav({ setCartOpen, setOverlay }) {
+function Nav({ setCartOpen }) {
 
     function onCartClick() {
-        setCartOpen('side-cart--active');
-        setOverlay('overlay--active');
+        setCartOpen(prev => !prev);
     }
+
     return (
         <nav className='nav'>
             <ul className='nav__list'>

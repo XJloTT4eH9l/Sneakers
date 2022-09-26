@@ -1,6 +1,6 @@
 .overlay {
     &--active {
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         width: 100%;
@@ -23,8 +23,59 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    &__empty {
+        margin-top: 100px;
+        text-align: center;
+    }
+    &__img {
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    &__empty-title {
+        font-weight: 600;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    &__text {
+        font-size: 16px;
+        opacity: 0.4;
+        margin-bottom: 20px;
+    }
+    &__empty-close {
+        position: relative;
+        padding: 18px 45px;
+        padding-left: 65px;
+        background-color: #9DD458;
+        border-radius: 18px;
+        color: #ffff;
+        transition: background-color 0.3s ease-in-out;
+        & img {
+            position: absolute;
+            left: 30px;
+            top: 19px;
+            transition: left 0.3s ease-in-out;
+        }
+        &:hover {
+            background-color: rgba(#9DD458, 0.9);
+        }
+        &:hover img{
+            left: 20px;
+        }
+    }
     &--active {
+        position: fixed;
         right: 0;
+        top: 0;
+        max-width: 400px;
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        z-index: 2;
+        background-color: #ffff;
+        transition: right 0.5s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     &--scroll {
         overflow: scroll;
