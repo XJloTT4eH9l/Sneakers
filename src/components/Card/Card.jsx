@@ -3,24 +3,25 @@ import { useState } from 'react';
 import './Card.scss';
 import Svg from '../Svg/Svg';
 
-function Card({ imgUrl, title, price, onCart }) {
+function Card({ id, imgUrl, title, price, onCart, onFavorit }) {
 
     const [cartAdded, setCartAdded] = useState(false);
     const [favorit, setFavorit] = useState();
 
     function onCartAdded() {
-        onCart({imgUrl, title, price});
+        onCart({ id, imgUrl, title, price});
         setCartAdded((prev) => !prev);
     }
 
-    function onFavorit() {
+    function onFavoritAdded() {
+        onFavorit({ id, imgUrl, title, price })
         setFavorit((prev) => !prev);
     }
 
     return (
         <div className='card'>
             <Svg />
-            <button className='card__favorit' onClick={onFavorit}>
+            <button className='card__favorit' onClick={onFavoritAdded}>
                 {favorit ? <img src='img/fav.png' alt='Add to favorit'></img> : <svg className='card__like'><use href='#like'></use></svg>}
             </button>
             <img className='card__img' src={imgUrl} alt={title}/>

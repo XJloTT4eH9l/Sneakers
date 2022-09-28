@@ -42,6 +42,11 @@ ol[class] {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
@@ -96,4 +101,13 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
+  @media(max-width: 985px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media(max-width: 685px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media(max-width: 485px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

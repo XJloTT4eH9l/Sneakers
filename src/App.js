@@ -1,3 +1,4 @@
+import {Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from "react";
 
 import axios from "axios";
@@ -6,13 +7,23 @@ import Search from "./components/Search/Search";
 import Card from "./components/Card/Card";
 import SideCart from "./components/SideCart/SideCart";
 
+let cartCounter = 1;
+
 function App() {
 
   const [sneakers, setSneakers] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
-  const [scroll, setScroll] = useState('');
   const [cartItems, setCartItems] = useState([]);
+  const [favorits, setFavorits] = useState([]);
+  const [scroll, setScroll] = useState('');
   const [value, setValue] = useState('');
+
+  useEffect(()=> {
+    getSneakers('https://631ae489dc236c0b1ee6bc11.mockapi.io/sneakers');
+    axios.get('https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems').then(res => {
+      setCartItems(res.data);
+    })
+  }, [])
 
   async function getSneakers(url) {
     await axios.get(url).then(res => {
@@ -21,24 +32,27 @@ function App() {
   }
 
   const onAddToCart = (obj) => {
+    obj.idL = cartCounter; 
+    cartCounter++;
     axios.post('https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems', obj);
+    console.log(obj);
     if(cartItems.length > 3) {
       setScroll('side-cart--scroll');
     }
     setCartItems(prev => [...prev, obj]);
   }
 
-  const onRemoveItem = (id) => {
-    axios.delete(`https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems/${id}`);
-    setCartItems(prev => prev.filter(item => item.id !== id));
+ 
+  const onRemoveItem = (idL) => {
+    cartCounter--;
+    axios.delete(`https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems/${idL}`);
+    setCartItems(prev => prev.filter(item => item.idL !== idL));
   }
 
-  useEffect(()=> {
-    getSneakers('https://631ae489dc236c0b1ee6bc11.mockapi.io/sneakers');
-    axios.get('https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems').then(res => {
-      setCartItems(res.data);
-    })
-  }, [])
+  const onAddToFavorite = (obj) => {
+    axios.post('https://631ae489dc236c0b1ee6bc11.mockapi.io/favorits', obj);
+    setFavorits(prev => [...prev, obj]);
+  }
 
   useEffect(() => {
     cartOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow ='visible';
@@ -64,11 +78,13 @@ function App() {
             .map(item => {
               return (
                 <Card 
-                  key={item.id}
+                  key={item.title}
+                  id={item.id}
                   imgUrl={item.imgUrl}
                   title={item.title}
                   price={item.price}
                   onCart={onAddToCart}
+                  onFavorit={onAddToFavorite}
                 />
               ) 
             })}
