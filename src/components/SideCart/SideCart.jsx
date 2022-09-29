@@ -29,7 +29,7 @@ function SideCart({ scroll, cartOpen, setCartOpen, cartItems, onRemoveItem }) {
                                             <h3 className='side-cart__name'>{item.title}</h3>
                                             <p className='side-cart__price'>{item.price}</p>
                                         </div>
-                                        <button onClick={() => onRemoveItem(item.idL)} className='side-cart__remove'><img src='img/delete.svg' alt='remove'></img></button>
+                                        <button onClick={() => onRemoveItem(item.id)} className='side-cart__remove'><img src='img/delete.svg' alt='remove'></img></button>
                                     </div>
                                     )
                                     })}

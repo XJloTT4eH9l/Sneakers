@@ -97,6 +97,13 @@ button {
   padding: 0 15px;
 }
 
+.title {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-weight: 700;
+  font-size: 32px;
+}
+
 .items {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -109,5 +116,26 @@ button {
   }
   @media(max-width: 485px) {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.empty-section {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 50vh;
+  & img {
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  &__title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  &__text {
+    font-size: 16px;
+    opacity: 0.4;
+    margin-bottom: 70px;
   }
 }

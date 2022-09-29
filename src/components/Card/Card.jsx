@@ -3,10 +3,10 @@ import { useState } from 'react';
 import './Card.scss';
 import Svg from '../Svg/Svg';
 
-function Card({ id, imgUrl, title, price, onCart, onFavorit }) {
+function Card({ id, imgUrl, title, price, onCart, onFavorit, favorited = false }) {
 
     const [cartAdded, setCartAdded] = useState(false);
-    const [favorit, setFavorit] = useState();
+    const [favorit, setFavorit] = useState(favorited);
 
     function onCartAdded() {
         onCart({ id, imgUrl, title, price});
