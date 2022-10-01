@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import AppContext from '../context';
 import Card from "../components/Card/Card";
 
-function Favorites({ favorites, onAddToCart,  onAddToFavorite }) {
+function Favorites() {
+    const { favorites, onAddToCart, onAddToFavorite } = useContext(AppContext);
+
     return (
         <section className="catalog">
             <div className="container">

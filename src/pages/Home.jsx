@@ -1,7 +1,8 @@
 import Card from "../components/Card/Card";
 import Search from "../components/Search/Search";
 
-function Home({ sneakers, value, setValue, onAddToCart, onAddToFavorite}) {
+function Home({ sneakers, cartItems, value, setValue, onAddToCart, onAddToFavorite}) {
+
     return(
         <section className="catalog">
         <div className="container">
