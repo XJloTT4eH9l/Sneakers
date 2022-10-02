@@ -4,17 +4,26 @@ import Info from '../Info';
 import AppContext from '../../context';
 import axios from 'axios';
 
-function SideCart({ scroll, cartOpen, setCartOpen, onRemoveItem }) {
+function SideCart({ scroll, cartOpen, setCartOpen, onRemoveItem, setCartCounter }) {
     const { cartItems, setCartItems} = useContext(AppContext);
     const [isOrderComlete, setIsOrderComplete] = useState(false);
     const [orderId, setOrderId] = useState(0);
 
+    const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);  
+
     async function onclickOrder() {
         try {
+            const {data} = await axios.post('https://631ae489dc236c0b1ee6bc11.mockapi.io/orders', {items: cartItems});
+            setOrderId(data.id);
             setIsOrderComplete(true);
             setCartItems([]);
-            setOrderId(orderId + 1);
-            await axios.post('https://631ae489dc236c0b1ee6bc11.mockapi.io/orders', {items: cartItems});
+
+            for(let i = 0; i < cartItems.length; i++) {
+                const item = cartItems[i];
+                await axios.delete('https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems/' +  item.id1);
+            }
+            setCartCounter(1);
+
         } catch (error) {
             alert('Не удалось создать заказ((');
         }
@@ -43,7 +52,7 @@ function SideCart({ scroll, cartOpen, setCartOpen, onRemoveItem }) {
                                         <img src={item.imgUrl} alt={item.title}></img>
                                         <div className='side-cart__descr'>
                                             <h3 className='side-cart__name'>{item.title}</h3>
-                                            <p className='side-cart__price'>{item.price}</p>
+                                            <p className='side-cart__price'>{item.price}грн</p>
                                         </div>
                                         <button onClick={() => onRemoveItem(item.id1)} className='side-cart__remove'><img src='img/delete.svg' alt='remove'></img></button>
                                     </div>
@@ -54,7 +63,7 @@ function SideCart({ scroll, cartOpen, setCartOpen, onRemoveItem }) {
                             <div className='side-cart__confirm'>
                                 <div className='side-cart__summary'>
                                     <h3 className='side-cart__summ'>Итого:</h3>
-                                    <p>6300грн</p>
+                                    <p>{totalPrice} грн</p>
                                 </div>
                                 <button onClick={onclickOrder} className='side-cart__btn'>Оформить заказ</button>
                             </div>

@@ -5,6 +5,16 @@
     }
     &__item {
         cursor: pointer;
+        &:first-child {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: #5C5C5C;
+            & img {
+                margin-right: 10px;
+            }
+        }
     }
     &__item:not(:last-child) {
         margin-right: 30px;

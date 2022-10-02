@@ -27,7 +27,7 @@ function Card({ id, imgUrl, title, price, onCart, onFavorit, favorited = false }
             <img className='card__img' src={imgUrl} alt={title}/>
             <h3 className='card__title'>{title}</h3>
             <p className='card__text'>Цена:</p>
-            <p className='card__price'>{price}</p>
+            <p className='card__price'>{price} грн</p>
             <button className='card__add' onClick={onCartAdded}>
                 {isItemAdded(id) ? <img src='img/added.svg' alt='added'></img> : <svg className='card__plus'><use href='#plus'></use></svg>}
             </button>
