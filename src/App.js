@@ -1,7 +1,6 @@
 import React from 'react';
 import {Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from "react";
-
 import AppContext from './context';
 import axios from "axios";
 
@@ -28,7 +27,7 @@ function App() {
       const cartResponce = await axios.get('https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems');
       const sneakersResponce = await axios.get('https://631ae489dc236c0b1ee6bc11.mockapi.io/sneakers');
       const ordersResponce = await axios.get('https://631ae489dc236c0b1ee6bc11.mockapi.io/orders');
-
+      
       setCartItems(cartResponce.data);
       setSneakers(sneakersResponce.data);
       setOrders(ordersResponce.data);
@@ -77,8 +76,8 @@ function App() {
  
   const onRemoveItem = async (id1) => {
     setCartItems(prev => prev.filter(item => item.id1 !== id1));
-    await axios.delete(`https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems/${id1}`);
     setCartCounter(cartCounter - 1);
+    await axios.delete(`https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems/${id1}`);
   }
 
   const onAddToFavorite = (obj) => {
@@ -93,6 +92,10 @@ function App() {
     return cartItems.some((obj) => Number(obj.id) === Number(id))
   }
 
+  const isItemFavorit = (title) => {
+    return favorites.some((obj) => obj.title === title);
+  }
+
   useEffect(() => {
     cartOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow ='visible';
   }, [cartOpen])
@@ -105,10 +108,14 @@ function App() {
         cartItems,
         favorites,
         isItemAdded,
+        isItemFavorit,
+        value,
+        setValue,
         onAddToCart,
         onAddToFavorite,
         setCartItems,
-        setCartOpen} 
+        setCartOpen
+      } 
     }>
       <div className="app">
       <Header setCartOpen={setCartOpen} />
@@ -122,17 +129,9 @@ function App() {
         setCartCounter={setCartCounter}
       />
       <Routes>
-        <Route path='/' element={<Home 
-              sneakers={sneakers}
-              cartItems={cartItems}
-              value={value}
-              setValue={setValue}
-              onAddToCart={onAddToCart}
-              onAddToFavorite={onAddToFavorite}
-              />}>
-        </Route>
-          <Route path='/favorites' element={ <Favorites /> }></Route>
-          <Route path='/orders' element={ <Orders /> }></Route>
+        <Route path='/' element={ <Home /> }></Route>
+        <Route path='/favorites' element={ <Favorites /> }></Route>
+        <Route path='/orders' element={ <Orders /> }></Route>
       </Routes>
     </div>
     </AppContext.Provider>

@@ -1,13 +1,12 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import AppContext from '../../context';
 
 import './Card.scss';
 import Svg from '../Svg/Svg';
 
-function Card({ id, imgUrl, title, price, onCart, onFavorit, favorited = false }) {
+function Card({ id, imgUrl, title, price, onCart, onFavorit }) {
 
-    const { isItemAdded } = useContext(AppContext);
-    const [favorit, setFavorit] = useState(favorited);
+    const { isItemAdded, isItemFavorit } = useContext(AppContext);
 
     function onCartAdded() {
         onCart({ id, imgUrl, title, price});
@@ -15,14 +14,13 @@ function Card({ id, imgUrl, title, price, onCart, onFavorit, favorited = false }
 
     function onFavoritAdded() {
         onFavorit({ id, imgUrl, title, price })
-        setFavorit((prev) => !prev);
     }
 
     return (
         <div className='card'>
             <Svg />
             <button className='card__favorit' onClick={onFavoritAdded}>
-                {favorit ? <img src='img/fav.png' alt='Add to favorit'></img> : <svg className='card__like'><use href='#like'></use></svg>}
+                {isItemFavorit(title) ? <img src='img/fav.png' alt='Add to favorit'></img> : <svg className='card__like'><use href='#like'></use></svg>}
             </button>
             <img className='card__img' src={imgUrl} alt={title}/>
             <h3 className='card__title'>{title}</h3>

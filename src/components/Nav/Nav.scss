@@ -15,8 +15,19 @@
                 margin-right: 10px;
             }
         }
+        &:hover .nav__fav {
+            fill: #FF8585;
+        }
     }
     &__item:not(:last-child) {
         margin-right: 30px;
+    }
+    &__fav {
+        position: relative;
+        top: 2px;
+        width: 20px;
+        height: 20px;
+        fill: #9B9B9B;
+        transition: fill 0.3s ease-in-out;
     }
 }

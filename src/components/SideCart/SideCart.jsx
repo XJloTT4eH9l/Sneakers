@@ -21,8 +21,8 @@ function SideCart({ scroll, cartOpen, setCartOpen, onRemoveItem, setCartCounter 
             for(let i = 0; i < cartItems.length; i++) {
                 const item = cartItems[i];
                 await axios.delete('https://631ae489dc236c0b1ee6bc11.mockapi.io/cartItems/' +  item.id1);
+                setCartCounter(1);
             }
-            setCartCounter(1);
 
         } catch (error) {
             alert('Не удалось создать заказ((');

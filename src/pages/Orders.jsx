@@ -8,17 +8,16 @@ import Card from '../components/Card/Card';
 function Orders() {
     
     const { orders, onAddToCart, onAddToFavorite } = useContext(AppContext);
-    console.log(orders);
 
     return (
         <section className="catalog">
             <div className="container">
                 <div className='orders'>
+                <h2 className='title'>Мои заказы</h2>
                     { orders.length > 0 ? (
                         orders.map(order => {
                             return (
                                 <div key={order.id}>
-                                    <h2 className='title'>Мои заказы</h2>
                                     <div className='order'>
                                         <h2 className='title'>Заказ №{order.id}</h2>
                                         <div className='items'>
