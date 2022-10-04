@@ -93,6 +93,9 @@ function App() {
   }
 
   const isItemFavorit = (title) => {
+    if(favorites === null) {
+      setFavorites([]);
+    }
     return favorites.some((obj) => obj.title === title);
   }
 
@@ -129,9 +132,9 @@ function App() {
         setCartCounter={setCartCounter}
       />
       <Routes>
-        <Route path='/' element={ <Home /> }></Route>
-        <Route path='/favorites' element={ <Favorites /> }></Route>
-        <Route path='/orders' element={ <Orders /> }></Route>
+        <Route path='/Sneakers/' element={ <Home /> }></Route>
+        <Route path='/Sneakers/favorites' element={ <Favorites /> }></Route>
+        <Route path='/Sneakers/orders' element={ <Orders /> }></Route>
       </Routes>
     </div>
     </AppContext.Provider>

@@ -36,7 +36,7 @@ function Favorites() {
                             <img src='img/sad.png' alt='sad' />
                             <h2 className="empty-section__title">Закладок нет :(</h2>
                             <p className="empty-section__text">Вы ничего не добавляли в закладки</p>
-                            <Link to='/'><button className='side-cart__empty-close'><img src='img/arrow-left.png' alt='Back'/> Вернуться назад</button></Link>
+                            <Link to='/Sneakers/'><button className='side-cart__empty-close'><img src='img/arrow-left.png' alt='Back'/> Вернуться назад</button></Link>
                         </div>
                     </div>
                 )}

@@ -9,7 +9,7 @@ function Header({ setCartOpen }) {
         <header className="header">
             <div className="container">
                 <div className="header__inner">
-                    <Link to='/'>
+                    <Link to='/Sneakers/'>
                         <div className="header__logo">
                             <img src="img/logo.png" alt="logo"></img>
                             <div className='header__text'>

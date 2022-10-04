@@ -4,9 +4,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media(max-width: 650px) {
+        flex-direction: column;
+    }
     &__title {
         font-weight: 700;
         font-size: 32px;
+        @media(max-width: 800px) {
+            font-size: 24px;
+        }
+        @media(max-width: 650px) {
+            margin-bottom: 30px;
+        }
     }
     &__input {
         max-width: 250px;

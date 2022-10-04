@@ -12,6 +12,9 @@
       }
     &:hover {
         transform: translateX(10px) translateY(-10px);
+        @media(max-width: 685px) {
+            transform: none;
+        }
     }
     &__img {
         width: 133px;

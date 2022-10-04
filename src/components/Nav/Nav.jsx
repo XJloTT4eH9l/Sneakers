@@ -17,8 +17,8 @@ function Nav({ setCartOpen }) {
             <Svg/>
             <ul className='nav__list'>
                 <li onClick={onCartClick} className='nav__item'><img src='img/cart.svg' alt='cart'></img>{totalPrice} грн</li>
-                <li className='nav__item'><Link to="/favorites" className='nav__link'><svg className='nav__fav'><use href='#favorit'></use></svg></Link></li>
-                <li className='nav__item'><Link to="/orders" className='nav__link'><img src='img/profile.svg' alt='profile'></img></Link></li>
+                <li className='nav__item'><Link to="/Sneakers/favorites" className='nav__link'><svg className='nav__fav'><use href='#favorit'></use></svg></Link></li>
+                <li className='nav__item'><Link to="/Sneakers/orders" className='nav__link'><img src='img/profile.svg' alt='profile'></img></Link></li>
             </ul>
         </nav>
     )

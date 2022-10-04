@@ -87,6 +87,9 @@ button {
 .catalog {
   margin-bottom: 85px;
   padding-bottom: 40px;
+  @media(max-width: 685px) {
+    margin-bottom: 0;
+  }
 }
 
 .app {
