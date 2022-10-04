@@ -13,7 +13,7 @@ function Header({ setCartOpen }) {
                         <div className="header__logo">
                             <img src="img/logo.png" alt="logo"></img>
                             <div className='header__text'>
-                                <h1 className='header__title'>REACT SNEAKERS</h1>
+                                <h1 className='header__title'>SNEAKERS</h1>
                                 <span>Магазин лучших кроссовок</span>
                             </div>
                         </div>

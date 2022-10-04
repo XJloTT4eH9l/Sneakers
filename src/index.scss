@@ -42,13 +42,20 @@ ol[class] {
   list-style: none;
 }
 
+li {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 a {
   text-decoration: none;
   color: inherit;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
 }
 
 a:not([class]) {
   text-decoration-skip-ink: auto;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 img {
@@ -74,6 +81,11 @@ button {
   color: inherit;
   background-color: transparent;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+svg {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -136,6 +148,9 @@ button {
   align-items: center;
   text-align: center;
   min-height: 50vh;
+  @media(max-width: 685px) {
+    min-height: 100vh;
+  }
   & img {
     margin: 0 auto;
     margin-bottom: 20px;
