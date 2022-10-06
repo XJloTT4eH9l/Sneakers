@@ -193,7 +193,36 @@
             max-width: 100%;
         }
         &:hover {
-            background-color: rgba(#9DD558, 0.8);
+            background-color: #9B9B9B;
+        }
+    }
+    &__btn-loading {
+        width: 100%;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        max-width: 325px;
+        margin: 0 auto;
+        background-color: #9DD558;
+        border-radius: 18px;
+        color: #ffff;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: default;
+        transition: background-color 0.3s linear;
+        animation: order 1s infinite ease-in-out;
+
+        @keyframes order {
+            0% {
+                background-color: #9B9B9B;
+            }
+
+            50% {
+                background-color: #9DD558;
+            }
+
+            100% {
+                background-color: #9B9B9B;
+            }
         }
     }
 }

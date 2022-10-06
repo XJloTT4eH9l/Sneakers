@@ -1,12 +1,15 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
 import Nav from '../Nav/Nav';
+import AppContext from '../../context';
 
 
-function Header({ setCartOpen }) {
+function Header() {
+    const {theme, setCartOpen} = useContext(AppContext);
     return(
-        <header className="header">
+        <header className={`header ${theme}`}>
             <div className="container">
                 <div className="header__inner">
                     <Link to='/Sneakers/'>

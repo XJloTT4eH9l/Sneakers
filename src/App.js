@@ -117,11 +117,11 @@ function App() {
         onAddToCart,
         onAddToFavorite,
         setCartItems,
-        setCartOpen
+        setCartOpen,
       } 
     }>
       <div className="app">
-      <Header setCartOpen={setCartOpen} />
+      <Header />
       <SideCart
         scroll={scroll}
         cartOpen={cartOpen}

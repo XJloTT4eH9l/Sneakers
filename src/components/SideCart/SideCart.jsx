@@ -8,17 +8,20 @@ function SideCart({ scroll, cartOpen, setCartOpen, onRemoveItem, setCartCounter 
     const { cartItems, setCartItems} = useContext(AppContext);
     const [isOrderComlete, setIsOrderComplete] = useState(false);
     const [orderId, setOrderId] = useState(0);
+    const [isLoadingOrder, setIsLoadingOrder] = useState(false);
 
     const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);  
 
     async function onclickOrder() {
         try {
+            setIsLoadingOrder(true);
+
             const {data} = await axios.post('https://631ae489dc236c0b1ee6bc11.mockapi.io/orders', {items: cartItems});
             setOrderId(data.id);
             setIsOrderComplete(true);
             setCartItems([]);
-
             setCartCounter(1);
+            setIsLoadingOrder(false);
 
             for(let i = 0; i < cartItems.length; i++) {
                 const item = cartItems[i];
@@ -26,7 +29,7 @@ function SideCart({ scroll, cartOpen, setCartOpen, onRemoveItem, setCartCounter 
             }
 
         } catch (error) {
-            alert('Не удалось создать заказ((');
+            alert(error);
         }
     }
 
@@ -66,7 +69,11 @@ function SideCart({ scroll, cartOpen, setCartOpen, onRemoveItem, setCartCounter 
                                     <h3 className='side-cart__summ'>Итого:</h3>
                                     <p>{totalPrice} грн</p>
                                 </div>
-                                <button onClick={onclickOrder} className='side-cart__btn'>Оформить заказ</button>
+                                <button
+                                    onClick={onclickOrder}
+                                    className={isLoadingOrder ? 'side-cart__btn-loading' : 'side-cart__btn'}>
+                                    {isLoadingOrder ? 'Оформление заказа' : 'Оформить заказ'}
+                                </button>
                             </div>
                             </>
                         ): (
